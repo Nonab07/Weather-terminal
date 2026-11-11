@@ -19,5 +19,17 @@ const printHelp = () => {
     `)
 }
 
+const printService = (response, icon)=>{
+    console.log(dedent`
+        ${chalk.bgGreenBright("Weather")}
+        City weather 
+        ${response.name}
+        ${icon} ${response.weather[0].description}
+        Temperature: ${response.main.temp}  (feels like: ${response.main.feels_like})
+        Humidity: ${response.main.humidity}%
+        Wind speed: ${response.wind.speed}
+    `);
+    
+}
 
-export {printError, printSuccess, printHelp}
+export {printError, printSuccess, printHelp, printService}

@@ -14,7 +14,7 @@ const saveKeyValue = async (key, value) => {
 
     if(await isExist(filePath)){
         const file = await fs.promises.readFile(filePath)
-        data = JSON.parsef(file)
+        data = JSON.parse(file)
     }
 
     data[key] = value
