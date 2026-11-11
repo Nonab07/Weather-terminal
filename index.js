@@ -17,6 +17,21 @@ const savToken = async token => {
     }
 }
 
+const getForcast = async () => {
+    try {
+        const response = await getWheather(process.env.CITY ?? 'uzbekistan')
+        console.log(response);
+    } catch (error) {
+        if(error?.response?.status == 404){
+            printError("City not found")
+        }else if(error?.response?.status == 401){
+            printError("Invalid token")
+        }else{
+            printError(error.message)
+        }
+    }
+}
+
 const startCli = () =>{
     const args = getArgs(process.argv)
     console.log(args)
@@ -30,7 +45,7 @@ const startCli = () =>{
     if(args.t){
         return savToken(args.t)
     }
-    getWheather('uzbekistan')
+    getForcast()
 }
 
 startCli()
